@@ -18,7 +18,7 @@ A personal portfolio website showcasing my projects and skills.
 
 ## Deployment
 
-This website is deployed using GitHub Pages. You can view it at: [https://your-username.github.io/my-portfolio](https://your-username.github.io/my-portfolio)
+This website is deployed using GitHub Pages. You can view it at: [https://vansh210105.github.io/my-portfolio](https://vansh210105.github.io/my-portfolio)
 
 ## License
 
