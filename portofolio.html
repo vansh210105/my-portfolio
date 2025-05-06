@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #3498db;
+      --secondary-color: #6c5ce7;
+      --background-color: #1a1a1a;
+      --text-color: #e0e0e0;
+      --card-bg: #2c3e50;
+      --shadow-color: rgba(255, 255, 255, 0.1);
+      --transition: all 0.3s ease;
+    }
+
+    /* Animations */
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--background-color);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--primary-color);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--secondary-color);
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      background-color: var(--background-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    nav {
+      background-color: var(--card-bg);
+      padding: 1.5rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px var(--shadow-color);
+      backdrop-filter: blur(10px);
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+    }
+
+    nav a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.1rem;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: var(--primary-color);
+      transition: var(--transition);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* Header */
+    header {
+      padding: 4rem 2rem;
+      text-align: center;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    }
+
+    header h1 {
+      font-size: 3.5rem;
+      margin: 0;
+      font-weight: 700;
+      background: linear-gradient(45deg, white, var(--secondary-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin: 1rem 0;
+      opacity: 0.9;
+    }
+
+    /* Sections */
+    section {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    h2 {
+      color: var(--primary-color);
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    }
+
+    /* Cards */
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px var(--shadow-color);
+      transition: var(--transition);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px var(--shadow-color);
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .card:hover img {
+      transform: scale(1.05);
+    }
+
+    .card-content {
+      padding: 1.5rem;
+    }
+
+    .card-content h3 {
+      color: var(--text-color);
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .card-content p {
+      color: #666;
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    .card-content a {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: var(--primary-color);
+      color: white;
+      text-decoration: none;
+      border-radius: 25px;
+      transition: var(--transition);
+      margin-top: 1rem;
+    }
+
+    .card-content a:hover {
+      background: #5743b4;
+      transform: translateY(-2px);
+    }
+
+    /* About Me */
+    .about-me {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .about-me img {
+      border-radius: 50%;
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      margin-bottom: 1.5rem;
+      transition: var(--transition);
+    }
+
+    .about-me img:hover {
+      transform: scale(1.05);
+    }
+
+    .about-me p {
+      font-size: 1.1rem;
+      margin-top: 1.5rem;
+      line-height: 1.8;
+      color: #666;
+    }
+
+   /* Contact */
+#contact {
+  padding: 4rem 2rem;
+  background: var(--card-bg);
+  color: var(--text-color);
+}
+
+.contact-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.contact-card {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 15px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: white;
+}
+
+.contact-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.contact-icon {
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.contact-card:hover .contact-icon {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.1);
+}
+
+.contact-icon i {
+  font-size: 1.5rem;
+  color: #ffffff;
+}
+
+.contact-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.contact-card p {
+  font-size: 1rem;
+  margin-bottom: 1.2rem;
+  color: #ffffff;
+  opacity: 0.85;
+}
+
+.contact-card a {
+  display: inline-block;
+  padding: 0.6rem 1.6rem;
+  background: #805ad5;
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.contact-card a:hover {
+  background: #6c40c3;
+  transform: translateY(-2px);
+}
+
+    /* Animations */
+    .animate-in {
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .slide-in {
+      animation: slideIn 0.6s ease forwards;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.5rem;
+      }
+
+      nav ul {
+        gap: 1.5rem;
+      }
+
+      .card-container {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      }
+
+      section {
+        padding: 3rem 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      nav {
+        padding: 1rem;
+      }
+
+      nav ul {
+        gap: 1rem;
+      }
+
+      .contact-info {
+        gap: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="#about">About Me</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#achievements">Achievements</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <h1>My Portfolio</h1>
+    <p>Showcasing my work, research, and achievements</p>
+  </header>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <div class="about-me">
+      <img src="images/my_image.jpg" alt="Profile Picture" style="width: 200px; height: 200px; border-radius: 50%; margin: 20px auto; display: block;">
+      <p>I am a passionate web developer in the making, dedicated to creating innovative and user-friendly web applications. With a strong foundation in modern web technologies and a keen eye for design, I strive to build solutions that make a difference. My journey in web development is driven by continuous learning and a desire to master both front-end and back-end technologies.</p>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="card-container">
+      <div class="card">
+        <img src="images/food-del.png" alt="Food Delivery App">
+        <div class="card-content">
+          <h3>Food Delivery App</h3>
+          <p>A full-stack food delivery application with separate admin and user interfaces.</p>
+          <a href="https://vansh210105.github.io/food-del/" target="_blank">User Interface</a>
+          <br>
+          <a href="https://vansh210105.github.io/food-del-admin/" target="_blank">Admin Interface</a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/flappy-bird.png" alt="Flappy Bird Game">
+        <div class="card-content">
+          <h3>Flappy Bird Game</h3>
+          <p>A recreation of the classic Flappy Bird game using JavaScript and Canvas API.</p>
+          <a href="https://vansh210105.github.io/flappybirdgame/" target="_blank">Play Game</a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/food-del-admin.png" alt="Resume Builder">
+        <div class="card-content">
+          <h3>Food Delivery Admin Dashboard</h3>
+          <p>A comprehensive admin dashboard for managing food delivery operations, including order management, restaurant listings, and analytics.</p>
+          <a href="https://vansh210105.github.io/food-del-admin/" target="_blank">View Dashboard</a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/ai-interview.png" alt="AI Mock Interview">
+        <div class="card-content">
+          <h3>AI Mock Interview Platform</h3>
+          <p>An AI-powered platform for conducting mock interviews and providing feedback.</p>
+          <a href="https://ai-mock-interview-pi-pink.vercel.app/" target="_blank">Try Platform</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section id="achievements">
+    <h2>Achievements</h2>
+    <div class="card-container">
+      <div class="card">
+        <img src="images/aws-certi.png" alt="Cloud Computing">
+        <div class="card-content">
+          <h3>Cloud Computing Course</h3>
+          <p>Certified in Cloud Fundamentals and Deployment.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/hackAmu_certificate.png" alt="Hackathon 1">
+        <div class="card-content">
+          <h3>HackAMU 2024</h3>
+          <p>Participated</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/minded_hacka.png" alt="Hackathon 2">
+        <div class="card-content">
+          <h3>Minded Hackathon</h3>
+          <p>Participated</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/sih.hacka.png" alt="Hackathon 3">
+        <div class="card-content">
+          <h3>Smart India Hackathon</h3>
+          <p>Participated</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="research">
+    <h2>Research Papers</h2>
+    <div class="card-container">
+      <div class="card">
+        <img src="images/research.png" alt="Research Paper">
+        <div class="card-content">
+          <h3>Breast Cancer Detection with ResNet-101 and Telemedicine</h3>
+          <p>A novel approach combining deep learning and telemedicine for breast cancer detection, achieving 95.16% accuracy. The framework integrates ResNet-101 model with transfer learning techniques to enable remote diagnosis and overcome geographical barriers in healthcare delivery.</p>
+          <a href="https://ieeexplore.ieee.org/document/10570101" target="_blank">Read Full Paper</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <div class="contact-cards">
+      <div class="contact-card">
+        <div class="contact-icon">
+          <i class="fas fa-envelope"></i>
+        </div>
+        <h3>Email</h3>
+        <p>vanshptl210@gmail.com</p>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">
+          <i class="fab fa-linkedin"></i>
+        </div>
+        <h3>LinkedIn</h3>
+        <a href="https://www.linkedin.com/in/vp210?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">Connect on LinkedIn</a>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">
+          <i class="fab fa-github"></i>
+        </div>
+        <h3>GitHub</h3>
+        <a href="https://github.com/vansh210105" target="_blank">View My Repos</a>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
